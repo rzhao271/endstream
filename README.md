@@ -2,12 +2,45 @@
 
 ## About
 
-This C++ program allows programmers to write little-endian or big-endian data to and from std::stream, std::istream and std::ostream.
+EndStream is a C++ library that provides some classes to wrap around the following stream objects, as follows:
 
-As an example, the programmer can write:
+- `std::ifstream` is wrapped with `rayzz::endstream::EndInputFileStream`
+- `std::ofstream` is wrapped with `rayzz::endstream::EndOutputFileStream`
+- `std::istringstream` is wrapped with `rayzz::endstream::EndInputStringStream`
+- `std::ostringstream` is wrapped with `rayzz::endstream::EndOutputStringStream`
 
+The user can specify which endianness to use while defining the helper class, 
+and change the endianness midway through, too.
+
+## Full Example
+
+The following program writes an unsigned 16-bit integer with a value of 2,
+and a signed 32-bit integer with a value of 3,
+to a binary file `foo.out`. It writes the values in little-endian.
+The file is overwritten if it already exists.
+
+```cpp
+#include <fstream>
+#include "rayzz/endstream"
+
+int main() {
+    using namespace rayzz::endstream;
+    EndOutputFileStream fout(
+        std::ofstream("foo.out", std::ios::binary | std::ios::trunc),
+        Endianness::ES_LITTLE_ENDIAN);
+    uint16_t foo = 2;
+    int32_t bar = 3;
+    fout << foo << bar;
+    return 0;
+}
 ```
-uint16_t foo;
-EndStream estream(fin, EndStream.BIG_ENDIAN);
-estream >> foo;
-```
+
+## Requirements
+
+- A compiler that can compile C++11.
+- g++ with version >= 5, since there is a bug with the move constructor in the stream objects for older g++ compilers.
+
+## Restrictions
+
+As soon as the stream is passed in to a wrapper class, the wrapper class will own the stream.
+Therefore, the stream is inaccessible outside of the wrapper class, and the lifetime of the stream ends when the lifetime of the wrapper class ends.
