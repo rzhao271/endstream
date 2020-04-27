@@ -4,34 +4,44 @@
 #include <sstream>
 #include <memory>
 
-#include <stdint.h>
-
 #include "endianness.h"
+#include "endistream.h"
 
 namespace rayzz {
     namespace endstream {
-        class EndInputStringStream : std::istringstream {
-            struct EndInputStringStreamImpl;
-            std::unique_ptr<EndInputStringStreamImpl> pImpl;
+        class endistringstream : public std::istringstream, public endistream {
+            struct impl;
+            std::unique_ptr<impl> pImpl;
 
         public:
-            EndInputStringStream(std::istringstream& is, Endianness endianness);
-            EndInputStringStream& read(int8_t& val);
-            EndInputStringStream& read(int16_t& val);
-            EndInputStringStream& read(int32_t& val);
-            EndInputStringStream& read(int64_t& val);
-            EndInputStringStream& read(uint8_t& val);
-            EndInputStringStream& read(uint16_t& val);
-            EndInputStringStream& read(uint32_t& val);
-            EndInputStringStream& read(uint64_t& val);
-            EndInputStringStream& operator>>(int8_t& val);
-            EndInputStringStream& operator>>(int16_t& val);
-            EndInputStringStream& operator>>(int32_t& val);
-            EndInputStringStream& operator>>(int64_t& val);
-            EndInputStringStream& operator>>(uint8_t& val);
-            EndInputStringStream& operator>>(uint16_t& val);
-            EndInputStringStream& operator>>(uint32_t& val);
-            EndInputStringStream& operator>>(uint64_t& val);
+            endistringstream(std::istringstream&& is, endianness endianness);
+            endistringstream(const endistringstream& other) = delete;
+            endistringstream(endistringstream&& other) noexcept;
+
+            endistringstream& operator=(const endistringstream& other) = delete;
+            endistringstream& operator=(endistringstream&& other) noexcept;
+
+            void set_endianness(endianness endianness) override;
+            void flip_endianness() override;
+
+            std::istream& read(int8_t& val) override;
+            std::istream& read(int16_t& val) override;
+            std::istream& read(int32_t& val) override;
+            std::istream& read(int64_t& val) override;
+            std::istream& read(uint8_t& val) override;
+            std::istream& read(uint16_t& val) override;
+            std::istream& read(uint32_t& val) override;
+            std::istream& read(uint64_t& val) override;
+            std::istream& operator>>(int8_t& val) override;
+            std::istream& operator>>(int16_t& val) override;
+            std::istream& operator>>(int32_t& val) override;
+            std::istream& operator>>(int64_t& val) override;
+            std::istream& operator>>(uint8_t& val) override;
+            std::istream& operator>>(uint16_t& val) override;
+            std::istream& operator>>(uint32_t& val) override;
+            std::istream& operator>>(uint64_t& val) override;
+
+            friend void swap(endistringstream& first, endistringstream& second) noexcept;
         };
     }
 }

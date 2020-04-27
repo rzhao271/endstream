@@ -4,7 +4,7 @@ LDFLAGS  := -L/usr/lib -lstdc++ -lm
 BUILD    := ./build
 OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/apps
-TARGET   := xtobmp
+TARGET   := endstream.a
 INCLUDE  := -Iinclude/
 SRC      := $(wildcard src/*.cpp)
 
@@ -15,7 +15,7 @@ all: build $(APP_DIR)/$(TARGET)
 
 $(APP_DIR)/$(TARGET): $(OBJS)
 	@mkdir -p $(@D)
-	$(CXX) $(LDFLAGS) $^ -o $@
+	ar rcs $@ $^
 
 -include $(DEPS)
 

@@ -4,34 +4,45 @@
 #include <sstream>
 #include <memory>
 
-#include <stdint.h>
-
 #include "endianness.h"
+#include "endostream.h"
 
 namespace rayzz {
     namespace endstream {
-        class EndOutputStringStream : std::ostringstream {
-            struct EndOutputStringStreamImpl;
-            std::unique_ptr<EndOutputStringStreamImpl> pImpl;
+        class endostringstream : public std::ostringstream, public endostream {
+            struct impl;
+            std::unique_ptr<impl> pImpl;
 
         public:
-            EndOutputStringStream(std::ostringstream& os, Endianness endianness);
-            EndOutputStringStream& write(int8_t val);
-            EndOutputStringStream& write(int16_t val);
-            EndOutputStringStream& write(int32_t val);
-            EndOutputStringStream& write(int64_t val);
-            EndOutputStringStream& write(uint8_t val);
-            EndOutputStringStream& write(uint16_t val);
-            EndOutputStringStream& write(uint32_t val);
-            EndOutputStringStream& write(uint64_t val);
-            EndOutputStringStream& operator<<(int8_t val);
-            EndOutputStringStream& operator<<(int16_t val);
-            EndOutputStringStream& operator<<(int32_t val);
-            EndOutputStringStream& operator<<(int64_t val);
-            EndOutputStringStream& operator<<(uint8_t val);
-            EndOutputStringStream& operator<<(uint16_t val);
-            EndOutputStringStream& operator<<(uint32_t val);
-            EndOutputStringStream& operator<<(uint64_t val);
+            endostringstream(std::ostringstream&& os, endianness ness);
+            endostringstream(endostringstream& other) = delete;
+            endostringstream(const endostringstream& other) = delete;
+            endostringstream(endostringstream&& other) noexcept;
+
+            endostringstream& operator=(const endostringstream& other) = delete;
+            endostringstream& operator=(endostringstream&& other) noexcept;
+
+            void set_endianness(endianness ness) override;
+            void flip_endianness() override;
+
+            std::ostream& write(int8_t val) override;
+            std::ostream& write(int16_t val) override;
+            std::ostream& write(int32_t val) override;
+            std::ostream& write(int64_t val) override;
+            std::ostream& write(uint8_t val) override;
+            std::ostream& write(uint16_t val) override;
+            std::ostream& write(uint32_t val) override;
+            std::ostream& write(uint64_t val) override;
+            std::ostream& operator<<(int8_t val) override;
+            std::ostream& operator<<(int16_t val) override;
+            std::ostream& operator<<(int32_t val) override;
+            std::ostream& operator<<(int64_t val) override;
+            std::ostream& operator<<(uint8_t val) override;
+            std::ostream& operator<<(uint16_t val) override;
+            std::ostream& operator<<(uint32_t val) override;
+            std::ostream& operator<<(uint64_t val) override;
+
+            friend void swap(endostringstream& first, endostringstream& second) noexcept;
         };
     }
 }
