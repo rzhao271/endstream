@@ -1,5 +1,7 @@
 # EndStream
 
+https://img.shields.io/travis/rzhao271/endstream/master
+
 ## About
 
 EndStream is a C++ library with classes that extend the following streams:
