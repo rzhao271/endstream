@@ -14,6 +14,10 @@ EndStream is a C++ library with classes that extend the following streams:
 The user can specify which endianness to use while defining the helper class, 
 and change the endianness midway through, too.
 
+## Sample
+
+Check out [this C++ program](sample/main.cpp).
+
 ## Requirements
 
 - A C++ compiler that can compile C++14.
