@@ -4,7 +4,7 @@
 
 namespace rayzz {
     namespace endstream {
-        TEST(BUFFER_UTIL_TEST, FLIP_ZERO) {
+        TEST(BufferUtilTest, FlipZero) {
             char buffer[2];
             buffer[0] = 'a';
             buffer[1] = 'b';
@@ -13,14 +13,14 @@ namespace rayzz {
             ASSERT_EQ(buffer[1], 'b');
         }
 
-        TEST(BUFFER_UTIL_TEST, FLIP_ONE) {
+        TEST(BufferUtilTest, FlipOne) {
             char buffer[1];
             buffer[0] = 'a';
             buffer_util::flip_buffer(buffer, 1);
             ASSERT_EQ(buffer[0], 'a');
         }
 
-        TEST(BUFFER_UTIL_TEST, FLIP_TWO) {
+        TEST(BufferUtilTest, FlipTwo) {
             char buffer[2];
             buffer[0] = 'a';
             buffer[1] = 'b';
@@ -29,7 +29,7 @@ namespace rayzz {
             ASSERT_EQ(buffer[1], 'a');
         }
 
-        TEST(BUFFER_UTIL_TEST, FLIP_TWO_OF_FOUR) {
+        TEST(BufferUtilTest, FlipTwoOfFour) {
             char buffer[4];
             buffer[0] = 'a';
             buffer[1] = 'b';
@@ -42,7 +42,7 @@ namespace rayzz {
             ASSERT_EQ(buffer[3], 'd');
         }
 
-        TEST(BUFFER_UTIL_TEST, FLIP_HUNDRED) {
+        TEST(BufferUtilTest, FlipHundred) {
             const size_t len = 100;
             char buffer[len];
             for (int i = 0; i < len; i++) {
@@ -54,7 +54,7 @@ namespace rayzz {
             }
         }
 
-        TEST(BUFFER_UTIL_TEST, FLIP_HUNDRED_HEAP) {
+        TEST(BufferUtilTest, FlipHundredHeap) {
             const size_t len = 100;
             char* buffer = new char[len];
             for (int i = 0; i < len; i++) {
