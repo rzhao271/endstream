@@ -1,6 +1,6 @@
 # EndStream
 
-https://img.shields.io/travis/rzhao271/endstream/master
+![Travis (.org) branch](https://img.shields.io/travis/rzhao271/endstream/master)
 
 ## About
 
