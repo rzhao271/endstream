@@ -14,6 +14,9 @@ namespace rayzz {
             std::unique_ptr<impl> pImpl;
 
         public:
+            using std::ofstream::write;
+            using std::ofstream::operator<<;
+
             endofstream();
             ~endofstream();
             endofstream(std::ofstream&& os, endianness ness);
@@ -28,23 +31,24 @@ namespace rayzz {
             void set_endianness(endianness ness) override;
             void flip_endianness() override;
 
-            std::ostream& write(int8_t val) override;
-            std::ostream& write(int16_t val) override;
-            std::ostream& write(int32_t val) override;
-            std::ostream& write(int64_t val) override;
-            std::ostream& write(uint8_t val) override;
-            std::ostream& write(uint16_t val) override;
-            std::ostream& write(uint32_t val) override;
-            std::ostream& write(uint64_t val) override;
-            std::ostream& operator<<(int8_t val) override;
-            std::ostream& operator<<(int16_t val) override;
-            std::ostream& operator<<(int32_t val) override;
-            std::ostream& operator<<(int64_t val) override;
-            std::ostream& operator<<(uint8_t val) override;
-            std::ostream& operator<<(uint16_t val) override;
-            std::ostream& operator<<(uint32_t val) override;
-            std::ostream& operator<<(uint64_t val) override;
+            endofstream& write(int8_t val) override;
+            endofstream& write(int16_t val) override;
+            endofstream& write(int32_t val) override;
+            endofstream& write(int64_t val) override;
+            endofstream& write(uint8_t val) override;
+            endofstream& write(uint16_t val) override;
+            endofstream& write(uint32_t val) override;
+            endofstream& write(uint64_t val) override;
+            endofstream& operator<<(int8_t val) override;
+            endofstream& operator<<(int16_t val) override;
+            endofstream& operator<<(int32_t val) override;
+            endofstream& operator<<(int64_t val) override;
+            endofstream& operator<<(uint8_t val) override;
+            endofstream& operator<<(uint16_t val) override;
+            endofstream& operator<<(uint32_t val) override;
+            endofstream& operator<<(uint64_t val) override;
 
+            void swap(endofstream& rhs) noexcept;
             friend void swap(endofstream& first, endofstream& second) noexcept;
         };
     }

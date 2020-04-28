@@ -8,31 +8,35 @@ namespace rayzz {
 
         struct endistringstream::impl {
             endianness ness;
-            std::istringstream *parent;
+
+            impl(endianness ness) {
+                this->ness = ness;
+            }
 
             template<typename T>
-            T parse() {
+            void parse(endistringstream* parent, T& val) {
                 size_t buffer_size = sizeof(T);
                 char* buffer = new char[buffer_size];
-                parent->read(buffer, buffer_size);
+                parent->std::istringstream::read(buffer, buffer_size);
                 if (!system_endianness::is_system_endianness(ness)) {
                     buffer_util::flip_buffer(buffer, buffer_size);
                 }
-                T val = *reinterpret_cast<T*>(buffer);
+                val = *reinterpret_cast<T*>(buffer);
                 delete[] buffer;
-                return val;
             }
         };
 
         endistringstream::endistringstream() = default;
         endistringstream::~endistringstream() = default;
 
-        endistringstream::endistringstream(
-            std::istringstream&& is, 
-            endianness ness) : super(std::move(is)) {
-            pImpl = std::make_unique<impl>();
-            pImpl->ness = ness;
-            pImpl->parent = this;
+        endistringstream::endistringstream(std::istringstream&& is, endianness ness) : 
+            super(std::move(is)), pImpl(std::make_unique<impl>(ness)) {
+        }
+
+        void endistringstream::swap(endistringstream& rhs) noexcept {
+            using std::swap;
+            super::swap(rhs);
+            swap(this->pImpl, rhs.pImpl);
         }
 
         void swap(endistringstream& first, endistringstream& second) noexcept {
@@ -64,79 +68,79 @@ namespace rayzz {
                 endianness::ES_BIG_ENDIAN;
         }
 
-        std::istream& endistringstream::read(int8_t& val) {
+        endistringstream& endistringstream::read(int8_t& val) {
             char buffer[1];
             super::read(buffer, 1);
             val = *reinterpret_cast<int8_t*>(buffer);
             return *this;
         }
 
-        std::istream& endistringstream::read(int16_t& val) {
-            val = pImpl->parse<int16_t>();
+        endistringstream& endistringstream::read(int16_t& val) {
+            pImpl->parse<int16_t>(this, val);
             return *this;
         }
 
-        std::istream& endistringstream::read(int32_t& val) {
-            val = pImpl->parse<int32_t>();
+        endistringstream& endistringstream::read(int32_t& val) {
+            pImpl->parse<int32_t>(this, val);
             return *this;
         }
 
-        std::istream& endistringstream::read(int64_t& val) {
-            val = pImpl->parse<int64_t>();
+        endistringstream& endistringstream::read(int64_t& val) {
+            pImpl->parse<int64_t>(this, val);
             return *this;
         }
 
-        std::istream& endistringstream::read(uint8_t& val) {
+        endistringstream& endistringstream::read(uint8_t& val) {
             char buffer[1];
             super::read(buffer, 1);
             val = *reinterpret_cast<uint8_t*>(buffer);
             return *this;
         }
 
-        std::istream& endistringstream::read(uint16_t& val) {
-            val = pImpl->parse<uint16_t>();
+        endistringstream& endistringstream::read(uint16_t& val) {
+            pImpl->parse<uint16_t>(this, val);
             return *this;
         }
 
-        std::istream& endistringstream::read(uint32_t& val) {
-            val = pImpl->parse<uint32_t>();
+        endistringstream& endistringstream::read(uint32_t& val) {
+            pImpl->parse<uint32_t>(this, val);
             return *this;
         }
         
-        std::istream& endistringstream::read(uint64_t& val) {
-            val = pImpl->parse<uint64_t>();
+        endistringstream& endistringstream::read(uint64_t& val) {
+            pImpl->parse<uint64_t>(this, val);
             return *this;
         }
 
-        std::istream& endistringstream::operator>>(int8_t& val) {
+        endistringstream& endistringstream::operator>>(int8_t& val) {
             return read(val);
         }
 
-        std::istream& endistringstream::operator>>(int16_t& val) {
+        endistringstream& endistringstream::operator>>(int16_t& val) {
             return read(val);
         }
 
-        std::istream& endistringstream::operator>>(int32_t& val) {
+        endistringstream& endistringstream::operator>>(int32_t& val) {
             return read(val);
         }
 
-        std::istream& endistringstream::operator>>(int64_t& val) {
+        endistringstream& endistringstream::operator>>(int64_t& val) {
             return read(val);
         }
 
-        std::istream& endistringstream::operator>>(uint8_t& val) {
+        endistringstream& endistringstream::operator>>(uint8_t& val) {
             return read(val);
         }
 
-        std::istream& endistringstream::operator>>(uint16_t& val) {
+        endistringstream& endistringstream::operator>>(uint16_t& val) {
             return read(val);
         }
 
-        std::istream& endistringstream::operator>>(uint32_t& val) {
+        endistringstream& endistringstream::operator>>(uint32_t& val) {
             return read(val);
         }
 
-        std::istream& endistringstream::operator>>(uint64_t& val) {
+        endistringstream& endistringstream::operator>>(uint64_t& val) {
             return read(val);
         }
     }

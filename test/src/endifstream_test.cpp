@@ -5,12 +5,13 @@
 namespace rayzz {
     namespace endstream {
         class EndIfStreamFixture : public ::testing::Test {
+            const char* filename = "endifstreamtest.in";
         protected:
             std::ifstream unwrapped_fin;
             endifstream fin;
 
             void SetUp() override {
-                std::ofstream tmp_fout("endifstreamtest.in", std::ios::binary);
+                std::ofstream tmp_fout(filename, std::ios::binary);
                 const char buffer[16] = { 
                     (char)0xFF, (char)0xFE, (char)0xFD, (char)0xFC,
                     (char)0xFB, (char)0xFA, (char)0xF9, (char)0xF8,
@@ -20,12 +21,12 @@ namespace rayzz {
                 tmp_fout.write(buffer, 16);
                 tmp_fout.close();
 
-                unwrapped_fin.open("endifstreamtest.in", std::ios::binary);
+                unwrapped_fin.open(filename, std::ios::binary);
             };
 
             void TearDown() override {
                 fin.close();
-                remove("endifstreamtest.in");
+                remove(filename);
             };
         };
 
@@ -195,6 +196,23 @@ namespace rayzz {
             fin >> second;
             ASSERT_EQ(first, (int64_t)0xF8F9FAFBFCFDFEFF);
             ASSERT_EQ(second, (int64_t)0xF7F6F5F4F3F2F1F0);
+        }
+
+        TEST_F(EndIfStreamFixture, SwapAndReadChars) {
+            endifstream finfirst;
+            endifstream finsecond = endifstream(std::move(unwrapped_fin), endianness::ES_BIG_ENDIAN);
+            swap(finfirst, finsecond);
+
+            const size_t buffer_len = 3;
+            char buffer[buffer_len];
+            char expected1[buffer_len] = {(char)0xFF, (char)0xFE, (char)0xFD};
+            finfirst.read(buffer, buffer_len);
+            ASSERT_EQ(memcmp(buffer, expected1, buffer_len), 0);
+
+            char expected2[buffer_len] = {(char)0xFC, (char)0xFB, (char)0xFA};
+            finsecond.swap(finfirst);
+            finsecond.read(buffer, buffer_len);
+            ASSERT_EQ(memcmp(buffer, expected2, buffer_len), 0);
         }
     }
 }

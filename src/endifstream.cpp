@@ -17,7 +17,7 @@ namespace rayzz {
             void parse(endifstream* parent, T& val) {
                 size_t buffer_size = sizeof(T);
                 char* buffer = new char[buffer_size];
-                parent->std::ifstream::read(buffer, buffer_size);
+                parent->read(buffer, buffer_size);
                 if (!system_endianness::is_system_endianness(ness)) {
                     buffer_util::flip_buffer(buffer, buffer_size);
                 }
@@ -31,6 +31,12 @@ namespace rayzz {
 
         endifstream::endifstream(std::ifstream&& is, endianness ness) :
             super(std::move(is)), pImpl(std::make_unique<impl>(ness)) {
+        }
+
+        void endifstream::swap(endifstream& rhs) noexcept {
+            using std::swap;
+            super::swap(rhs);
+            swap(this->pImpl, rhs.pImpl);
         }
 
         void swap(endifstream& first, endifstream& second) noexcept {

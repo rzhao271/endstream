@@ -9,11 +9,14 @@
 
 namespace rayzz {
     namespace endstream {
-        class endifstream : public endistream, public std::ifstream {
+        class endifstream : public std::ifstream, public endistream {
             struct impl;
             std::unique_ptr<impl> pImpl;
 
         public:
+            using std::ifstream::read;
+            using std::ifstream::operator>>;
+            
             endifstream();
             ~endifstream();
             endifstream(std::ifstream&& is, endianness ness);
@@ -44,6 +47,7 @@ namespace rayzz {
             endifstream& operator>>(uint32_t& val) override;
             endifstream& operator>>(uint64_t& val) override;
 
+            void swap(endifstream& rhs) noexcept;
             friend void swap(endifstream& first, endifstream& second) noexcept;
         };
     }

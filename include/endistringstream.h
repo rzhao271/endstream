@@ -14,6 +14,9 @@ namespace rayzz {
             std::unique_ptr<impl> pImpl;
 
         public:
+            using std::istringstream::read;
+            using std::istringstream::operator>>;
+            
             endistringstream();
             ~endistringstream();
             endistringstream(std::istringstream&& is, endianness ness);
@@ -27,23 +30,24 @@ namespace rayzz {
             void set_endianness(endianness ness) override;
             void flip_endianness() override;
 
-            std::istream& read(int8_t& val) override;
-            std::istream& read(int16_t& val) override;
-            std::istream& read(int32_t& val) override;
-            std::istream& read(int64_t& val) override;
-            std::istream& read(uint8_t& val) override;
-            std::istream& read(uint16_t& val) override;
-            std::istream& read(uint32_t& val) override;
-            std::istream& read(uint64_t& val) override;
-            std::istream& operator>>(int8_t& val) override;
-            std::istream& operator>>(int16_t& val) override;
-            std::istream& operator>>(int32_t& val) override;
-            std::istream& operator>>(int64_t& val) override;
-            std::istream& operator>>(uint8_t& val) override;
-            std::istream& operator>>(uint16_t& val) override;
-            std::istream& operator>>(uint32_t& val) override;
-            std::istream& operator>>(uint64_t& val) override;
+            endistringstream& read(int8_t& val) override;
+            endistringstream& read(int16_t& val) override;
+            endistringstream& read(int32_t& val) override;
+            endistringstream& read(int64_t& val) override;
+            endistringstream& read(uint8_t& val) override;
+            endistringstream& read(uint16_t& val) override;
+            endistringstream& read(uint32_t& val) override;
+            endistringstream& read(uint64_t& val) override;
+            endistringstream& operator>>(int8_t& val) override;
+            endistringstream& operator>>(int16_t& val) override;
+            endistringstream& operator>>(int32_t& val) override;
+            endistringstream& operator>>(int64_t& val) override;
+            endistringstream& operator>>(uint8_t& val) override;
+            endistringstream& operator>>(uint16_t& val) override;
+            endistringstream& operator>>(uint32_t& val) override;
+            endistringstream& operator>>(uint64_t& val) override;
 
+            void swap(endistringstream& rhs) noexcept;
             friend void swap(endistringstream& first, endistringstream& second) noexcept;
         };
     }
