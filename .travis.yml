@@ -1,21 +1,9 @@
-dist: trusty
-sudo: required
+dist: xenial
 language:
   - cpp
 compiler:
   - gcc
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - gcc-5
-      - g++-5
-      - cmake
 script:
-  # Link to the standard commands
-  - ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
-  - ln -s /usr/bin/g++-5 /usr/local/bin/g++
   # Export CC and CXX to tell cmake which compiler to use
   - export CC=/usr/bin/gcc-5
   - export CXX=/usr/bin/g++-5
@@ -23,4 +11,3 @@ script:
   - gcc -v && g++ -v && cmake --version
   # Run your build commands next
   - cmake . && make && ./test/endstreamtests
-  
