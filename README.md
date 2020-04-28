@@ -16,7 +16,7 @@ and change the endianness midway through, too.
 
 ## Sample
 
-Check out [this C++ program](sample/main.cpp).
+Check out [this C++ program](sample/src/main.cpp).
 
 ## Requirements
 
