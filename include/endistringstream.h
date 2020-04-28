@@ -14,14 +14,17 @@ namespace rayzz {
             std::unique_ptr<impl> pImpl;
 
         public:
-            endistringstream(std::istringstream&& is, endianness endianness);
+            endistringstream();
+            ~endistringstream();
+            endistringstream(std::istringstream&& is, endianness ness);
             endistringstream(const endistringstream& other) = delete;
             endistringstream(endistringstream&& other) noexcept;
 
             endistringstream& operator=(const endistringstream& other) = delete;
             endistringstream& operator=(endistringstream&& other) noexcept;
 
-            void set_endianness(endianness endianness) override;
+            endianness get_endianness() const override;
+            void set_endianness(endianness ness) override;
             void flip_endianness() override;
 
             std::istream& read(int8_t& val) override;

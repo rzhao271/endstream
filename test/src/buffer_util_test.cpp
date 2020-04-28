@@ -45,11 +45,11 @@ namespace rayzz {
         TEST(BufferUtilTest, FlipHundred) {
             const size_t len = 100;
             char buffer[len];
-            for (int i = 0; i < len; i++) {
+            for (size_t i = 0; i < len; i++) {
                 buffer[i] = i;
             }
             buffer_util::flip_buffer(buffer, len);
-            for (int i = 0; i < len; i++) {
+            for (size_t i = 0; i < len; i++) {
                 ASSERT_EQ(buffer[i], len - i - 1);
             }
         }
@@ -57,11 +57,11 @@ namespace rayzz {
         TEST(BufferUtilTest, FlipHundredHeap) {
             const size_t len = 100;
             char* buffer = new char[len];
-            for (int i = 0; i < len; i++) {
+            for (size_t i = 0; i < len; i++) {
                 buffer[i] = i;
             }
             buffer_util::flip_buffer(buffer, len);
-            for (int i = 0; i < len; i++) {
+            for (size_t i = 0; i < len; i++) {
                 ASSERT_EQ(buffer[i], len - i - 1);
             }
             delete[] buffer;

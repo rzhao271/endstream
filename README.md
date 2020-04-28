@@ -2,12 +2,12 @@
 
 ## About
 
-EndStream is a C++ library that provides some classes to wrap around the following stream objects, as follows:
+EndStream is a C++ library that provides some classes that extend the following stream classes:
 
-- `std::ifstream` is wrapped with `rayzz::endstream::EndInputFileStream`
-- `std::ofstream` is wrapped with `rayzz::endstream::EndOutputFileStream`
-- `std::istringstream` is wrapped with `rayzz::endstream::EndInputStringStream`
-- `std::ostringstream` is wrapped with `rayzz::endstream::EndOutputStringStream`
+- `std::ifstream` becomes `rayzz::endstream::endifstream`
+- `std::ofstream` becomes `rayzz::endstream::endofstream`
+- `std::istringstream` becomes `rayzz::endstream::endistringstream`
+- `std::ostringstream` becomes `rayzz::endstream::endostringstream`
 
 The user can specify which endianness to use while defining the helper class, 
 and change the endianness midway through, too.
@@ -25,9 +25,9 @@ The file is overwritten if it already exists.
 
 int main() {
     using namespace rayzz::endstream;
-    EndOutputFileStream fout(
+    endofstream fout(
         std::ofstream("foo.out", std::ios::binary | std::ios::trunc),
-        Endianness::ES_LITTLE_ENDIAN);
+        endianness::ES_LITTLE_ENDIAN);
     uint16_t foo = 2;
     int32_t bar = 3;
     fout << foo << bar;
@@ -37,8 +37,9 @@ int main() {
 
 ## Requirements
 
-- A compiler that can compile C++11.
+- A compiler that can compile C++14.
 - g++ with version >= 5, since there is a bug with the move constructor in the stream objects for older g++ compilers.
+- CMake version >= 3.17.1
 
 ## Restrictions
 

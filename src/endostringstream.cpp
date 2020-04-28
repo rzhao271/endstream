@@ -22,6 +22,9 @@ namespace rayzz {
             }
         };
 
+        endostringstream::endostringstream() = default;
+        endostringstream::~endostringstream() = default;
+
         endostringstream::endostringstream(
             std::ostringstream&& os, 
             endianness ness) : super(std::move(os)) {
@@ -43,6 +46,10 @@ namespace rayzz {
         endostringstream& endostringstream::operator=(endostringstream&& other) noexcept {
             rayzz::endstream::swap(*this, other);
             return *this;
+        }
+
+        endianness endostringstream::get_endianness() const {
+            return pImpl->ness;
         }
 
         void endostringstream::set_endianness(endianness ness) {

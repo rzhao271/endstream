@@ -14,6 +14,8 @@ namespace rayzz {
             std::unique_ptr<impl> pImpl;
 
         public:
+            endofstream();
+            ~endofstream();
             endofstream(std::ofstream&& os, endianness ness);
             endofstream(endofstream& other) = delete;
             endofstream(const endofstream& other) = delete;
@@ -22,6 +24,7 @@ namespace rayzz {
             endofstream& operator=(const endofstream& other) = delete;
             endofstream& operator=(endofstream&& other) noexcept;
 
+            endianness get_endianness() const override;
             void set_endianness(endianness ness) override;
             void flip_endianness() override;
 

@@ -22,6 +22,9 @@ namespace rayzz {
             }
         };
 
+        endofstream::endofstream() = default;
+        endofstream::~endofstream() = default;
+
         endofstream::endofstream(
             std::ofstream&& os, 
             endianness ness) : super(std::move(os)) {
@@ -43,6 +46,10 @@ namespace rayzz {
         endofstream& endofstream::operator=(endofstream&& other) noexcept {
             rayzz::endstream::swap(*this, other);
             return *this;
+        }
+
+        endianness endofstream::get_endianness() const {
+            return pImpl->ness;
         }
 
         void endofstream::set_endianness(endianness ness) {
