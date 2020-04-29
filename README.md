@@ -1,6 +1,6 @@
 # EndStream
 
-![Travis (.com) branch](https://img.shields.io/travis/com/rzhao271/endstream/master) ![Coverity Scan](https://img.shields.io/coverity/scan/20997)
+![Travis (.com) branch](https://img.shields.io/travis/com/rzhao271/endstream/master) ![Coverity Scan](https://img.shields.io/coverity/scan/20997) ![Coveralls github branch](https://img.shields.io/coveralls/github/rzhao271/endstream/master) ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/rzhao271/endstream)
 
 ## About
 
