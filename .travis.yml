@@ -10,7 +10,29 @@ script:
   # Check versions of gcc, g++ and cmake
   - gcc -v && g++ -v && cmake --version
   # Run the build commands next
-  - cmake . && make
-  - cd sample && cmake . && make && cd -
-  - ./test/endstream_tests
-  - ./sample/endstream_sample
+  - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then cmake . && make && cd sample && cmake . && make && cd - && ./test/endstream_tests && ./sample/endstream_sample ; fi
+
+env:
+global:
+  - secure: "jaVjoPQLD9VOeYzp6qAHXt8dx885uQ7H2NFWFc9p1H1cKcLpNU+LANFE7GcZgUPjtP/2XIlKZsrSjrMIJpNK9/4sei991NlCJAjF6oXm39/Lmy3wgiRo6u8LG3sso8pPOiuZ65MGhX/t1L7KhXBq0XaHDA9kprjIbu4koeh6WDm/ndaTbq5UfaLUsO3hXqKm800TSLE7yrs0lCP0CskHJi0/0PoDx/B/WRTH5ex5781s+yHZIFTXAe00iAswjEmNQlcnVHmxcQMcyMSWTVLrzZ6orInORCZPfultvb2/1WPiDBivfmvgSsgCya3MpBnfOwc5qjZzqphxlvSILzzqN6mniBR76ke2+bdNJf9lXOXa85uwrUuF1HkI1DjdGMNT0ZLGqa83xObYhaLcwnIs5MunR3mQe7jlMFsIrTwpRnyFXVa/k+k/i0rdytPfgWrhVC4UxJvNGEgIFK/gX29e1GLNbwjvqKnGv6PvwvK3Lge504Y133Pjvoubc0y2fkXi8vryqcAiZjgIZ/+9t7L7ns3Puf5l1mDaDSuQEuGBL26dgZD8G3S/gNrVclgtPQHxln1LUhDLX6TpbbOpXEDPZlfMw1BhJErv+0aB6RKhEHirWRcPolcXAaDZ4oqrR+LrwnFoJgeK0mG2586YcdgCG9W6f4QTh2OytsDTpMsv1/4="
+
+addons:
+  coverity_scan:
+    # GitHub project metadata
+    # ** specific to your project **
+    project:
+      name: rzhao271/endstream
+      version: 0.1.0
+      description: fstream and sstream, but with endianness
+
+    # Where email notification of build analysis results will be sent
+    notification_email: thermostatico@gmail.com
+
+    # The command that will be added as an argument to "cov-build" to compile your project for analysis,
+    # ** likely specific to your build **
+    build_command: cmake . && make
+
+    # Pattern to match selecting branches that will run analysis. We recommend leaving this set to 'coverity_scan'.
+    # Take care in resource usage, and consider the build frequency allowances per
+    #   https://scan.coverity.com/faq#frequency
+    branch_pattern: coverity_scan
