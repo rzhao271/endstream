@@ -12,7 +12,8 @@ script:
   # Check versions of gcc, g++ and cmake
   - gcc -v && g++ -v && cmake --version
   # Run the build commands next
-  - > if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then
+  - > 
+      if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then
       cmake -DBUILD_TESTS=ON -DCODE_COVERAGE=ON . && make 
       && cd sample && cmake . && make && cd - 
       && ./tests/endstream_tests && ./sample/endstream_sample ; fi
