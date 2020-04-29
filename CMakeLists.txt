@@ -22,7 +22,7 @@ file(GLOB src "${CMAKE_SOURCE_DIR}/src/*.cpp")
 option(BUILD_TESTS "Build the tests." OFF)
 if (BUILD_TESTS AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
   enable_testing()
-  add_subdirectory(googletest-release-1.10.0)
+  add_subdirectory("lib/googletest-release-1.10.0")
   add_subdirectory(tests)
 endif()
 

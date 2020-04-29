@@ -14,7 +14,7 @@ script:
   # Run the build commands next
   - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then cmake -DBUILD_TESTS=ON -DCODE_COVERAGE=ON . && make && cd sample && cmake . && make && cd - && ./tests/endstream_tests && ./sample/endstream_sample ; fi
 after_success:
-  - coveralls --exclude tests --gcov-options '\-lp'
+  - coveralls --exclude tests --exclude lib --gcov-options '\-lp'
 
 notifications:
   email: false

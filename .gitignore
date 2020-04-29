@@ -1,6 +1,5 @@
 notes/
 archive/
-lib/
 libendstream.a
 endstream_tests
 endstream_sample
