@@ -19,10 +19,28 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_WARN_FLAGS}")
 file(GLOB headers "${CMAKE_SOURCE_DIR}/include/${this}/*.h")
 file(GLOB src "${CMAKE_SOURCE_DIR}/src/*.cpp")
 
-enable_testing()
-add_subdirectory(googletest-release-1.10.0)
-add_subdirectory(test)
+option(BUILD_TESTS "Build the tests." OFF)
+if (BUILD_TESTS AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
+  enable_testing()
+  add_subdirectory(googletest-release-1.10.0)
+  add_subdirectory(tests)
+endif()
 
 add_library(${this} STATIC ${headers} ${src})
 target_include_directories(${this} PUBLIC "${CMAKE_SOURCE_DIR}/include")
 
+# from https://github.com/codecov/example-cpp11-cmake/blob/master/CMakeLists.txt
+option(CODE_COVERAGE "Enable coverage reporting." OFF)
+if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  # Add required flags (GCC & LLVM/Clang)
+  target_compile_options(${this} INTERFACE
+    -O0        # no optimization
+    -g         # generate debug info
+    --coverage # sets all required flags
+  )
+  if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
+    target_link_options(${this} INTERFACE --coverage)
+  else()
+    target_link_libraries(${this} INTERFACE --coverage)
+  endif()
+endif()
