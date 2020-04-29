@@ -21,7 +21,7 @@ Check out [this C++ program](sample/src/main.cpp).
 ## Requirements
 
 - A C++ compiler that can compile C++14.
-- CMake version >= 2.8.8 (new policy)
+- CMake version >= 3.1
 - If you're using g++, it must be at least version 5 (see https://stackoverflow.com/q/28775673 for details)
 
 ## Limitations
