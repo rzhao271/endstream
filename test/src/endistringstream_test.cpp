@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "endistringstream.h"
+#include "endstream/endistringstream.h"
 
 namespace rayzz {
     namespace endstream {

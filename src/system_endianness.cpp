@@ -1,4 +1,4 @@
-#include "system_endianness.h"
+#include "endstream/system_endianness.h"
 
 #include <stdint.h>
 

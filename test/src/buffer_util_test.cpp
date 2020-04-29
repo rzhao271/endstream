@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "buffer_util.h"
+#include "endstream/buffer_util.h"
 
 namespace rayzz {
     namespace endstream {

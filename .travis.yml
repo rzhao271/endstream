@@ -9,7 +9,9 @@ script:
   - export CXX=/usr/bin/g++-5
   # Check versions of gcc, g++ and cmake
   - gcc -v && g++ -v && cmake --version
-  # Run your build commands next
+  - ./configure --enable-gcov
+  # Run the build commands next
   - cmake . && make
-  - ./test/endstreamtests
-  - ./sample/endstreamsample
+  - cd sample && cmake . && make && cd -
+  - ./test/endstream_tests
+  - ./sample/endstream_sample

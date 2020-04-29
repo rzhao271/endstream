@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "system_endianness.h"
+#include "endstream/system_endianness.h"
 
 namespace rayzz {
     namespace endstream

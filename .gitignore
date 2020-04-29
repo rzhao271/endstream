@@ -2,7 +2,8 @@ notes/
 archive/
 lib/
 libendstream.a
-endstreamtests
+endstream_tests
+endstream_sample
 
 # Created by https://www.gitignore.io/api/visualstudiocode
 # Edit at https://www.gitignore.io/?templates=visualstudiocode

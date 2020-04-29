@@ -2,8 +2,8 @@
 
 #include <assert.h>
 
-#include "endofstream.h"
-#include "endifstream.h"
+#include <endstream/endofstream.h>
+#include <endstream/endifstream.h>
 
 using namespace rayzz::endstream;
 

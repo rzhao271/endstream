@@ -1,6 +1,6 @@
-#include "buffer_util.h"
-#include "endostringstream.h"
-#include "system_endianness.h"
+#include "endstream/buffer_util.h"
+#include "endstream/endostringstream.h"
+#include "endstream/system_endianness.h"
 
 namespace rayzz {
     namespace endstream {
