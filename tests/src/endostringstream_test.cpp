@@ -327,5 +327,24 @@ namespace rayzz {
             ASSERT_EQ(buffer.length(), 2 * buffer_len);
             ASSERT_EQ(memcmp(buffer.c_str(), expected, 2 * buffer_len), 0);
         }
+
+        TEST_F(EndOStringStreamFixture, Moveconstructor) {
+            oss = endostringstream(std::move(unwrapped_oss), endianness::ES_LITTLE_ENDIAN);
+            endostringstream oss_second(std::move(oss));
+            int64_t first = (int64_t)0xFFFEFDFCFBFAF9F8;
+            int64_t second = (int64_t)0xF7F6F5F4F3F2F1F0;
+            oss_second << first << second;
+
+            const size_t num_bytes = 16;
+            char expected[num_bytes] = {
+                (char)0xF8, (char)0xF9, (char)0xFA, (char)0xFB,
+                (char)0xFC, (char)0xFD, (char)0xFE, (char)0xFF,
+                (char)0xF0, (char)0xF1, (char)0xF2, (char)0xF3,
+                (char)0xF4, (char)0xF5, (char)0xF6, (char)0xF7,
+            };
+            std::string buffer = oss_second.str();
+            ASSERT_EQ(buffer.length(), num_bytes);
+            ASSERT_EQ(memcmp(buffer.c_str(), expected, num_bytes), 0);
+        }
     }
 }

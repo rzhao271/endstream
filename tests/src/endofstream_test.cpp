@@ -357,5 +357,25 @@ namespace rayzz {
             read_bytes(buffer, 2 * buffer_len);
             ASSERT_EQ(memcmp(buffer, expected, buffer_len), 0);
         }
+
+        TEST_F(EndOfStreamFixture, Moveconstructor) {
+            fout = endofstream(std::move(unwrapped_fout), endianness::ES_LITTLE_ENDIAN);
+            endofstream fout_second(std::move(fout));
+            int64_t first = (int64_t)0xFFFEFDFCFBFAF9F8;
+            int64_t second = (int64_t)0xF7F6F5F4F3F2F1F0;
+            fout_second << first << second;
+            fout_second.close();
+
+            const size_t num_bytes = 16;
+            char expected[num_bytes] = {
+                (char)0xF8, (char)0xF9, (char)0xFA, (char)0xFB,
+                (char)0xFC, (char)0xFD, (char)0xFE, (char)0xFF,
+                (char)0xF0, (char)0xF1, (char)0xF2, (char)0xF3,
+                (char)0xF4, (char)0xF5, (char)0xF6, (char)0xF7,
+            };
+            char buffer[num_bytes];
+            read_bytes(buffer, num_bytes);
+            ASSERT_EQ(memcmp(buffer, expected, num_bytes), 0);
+        }
     }
 }

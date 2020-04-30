@@ -208,5 +208,15 @@ namespace rayzz {
             eiss_second.read(buffer, buffer_len);
             ASSERT_EQ(memcmp(buffer, expected2, buffer_len), 0);
         }
+
+        TEST_F(EndIStringStreamFixture, MoveConstructor) {
+            iss = endistringstream(std::move(unwrapped_iss), endianness::ES_LITTLE_ENDIAN);
+            endistringstream iss_second(std::move(iss));
+            int64_t first;
+            int64_t second;
+            iss_second >> first >> second;
+            ASSERT_EQ(first, (int64_t)0xF8F9FAFBFCFDFEFF);
+            ASSERT_EQ(second, (int64_t)0xF0F1F2F3F4F5F6F7);
+        }
     }
 }
