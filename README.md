@@ -1,6 +1,6 @@
 # EndStream
 
- [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/rzhao271/endstream)](https://github.com/rzhao271/endstream/releases/tag/v0.1.0) [![Travis (.com) branch](https://img.shields.io/travis/com/rzhao271/endstream/master)](https://travis-ci.com/github/rzhao271/endstream) [![Coveralls github branch](https://img.shields.io/coveralls/github/rzhao271/endstream/master)](https://coveralls.io/github/rzhao271/endstream) [![Coverity Scan](https://img.shields.io/coverity/scan/20997)](https://scan.coverity.com/projects/rzhao271-endstream)
+ [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/rzhao271/endstream)](https://github.com/rzhao271/endstream/releases/tag/v0.1.0) [![Travis (.com) branch](https://img.shields.io/travis/com/rzhao271/endstream/master)](https://travis-ci.com/github/rzhao271/endstream) [![Coveralls github branch](https://img.shields.io/coveralls/github/rzhao271/endstream/master)](https://coveralls.io/github/rzhao271/endstream)
 
 ## About
 
