@@ -33,7 +33,7 @@ endif()
 option(BUILD_TESTS "Build the tests." ON)
 if (BUILD_TESTS AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
   enable_testing()
-  add_subdirectory("lib/googletest-release-1.10.0")
+  add_subdirectory("googletest-release-1.10.0")
   add_subdirectory(tests)
 endif()
 
