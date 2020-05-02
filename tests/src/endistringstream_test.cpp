@@ -10,7 +10,7 @@ namespace rayzz {
             endistringstream iss;
 
             void SetUp() override {
-                const char buffer[16] = { 
+                const char buffer[16] = {
                     (char)0xFF, (char)0xFE, (char)0xFD, (char)0xFC,
                     (char)0xFB, (char)0xFA, (char)0xF9, (char)0xF8,
                     (char)0xF7, (char)0xF6, (char)0xF5, (char)0xF4,

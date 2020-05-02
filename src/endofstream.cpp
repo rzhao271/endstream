@@ -8,7 +8,7 @@ namespace rayzz {
 
         struct endofstream::impl {
             endianness ness;
-            
+
             impl(endianness ness) {
                 this->ness = ness;
             }
@@ -27,7 +27,7 @@ namespace rayzz {
         endofstream::endofstream() = default;
         endofstream::~endofstream() = default;
 
-        endofstream::endofstream(std::ofstream&& os, endianness ness) : 
+        endofstream::endofstream(std::ofstream&& os, endianness ness) :
             super(std::move(os)), pImpl(std::make_unique<impl>(ness)) {
         }
 
@@ -79,12 +79,12 @@ namespace rayzz {
 
         endofstream& endofstream::write(int32_t val) {
             pImpl->write_as_char_array<int32_t>(this, val);
-            return *this;    
+            return *this;
         }
 
         endofstream& endofstream::write(int64_t val) {
             pImpl->write_as_char_array<int64_t>(this, val);
-            return *this;    
+            return *this;
         }
 
         endofstream& endofstream::write(uint8_t val) {
@@ -95,7 +95,7 @@ namespace rayzz {
 
         endofstream& endofstream::write(uint16_t val) {
             pImpl->write_as_char_array<uint16_t>(this, val);
-            return *this;    
+            return *this;
         }
 
         endofstream& endofstream::write(uint32_t val) {

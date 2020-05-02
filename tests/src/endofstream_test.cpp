@@ -111,8 +111,8 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 4;
-            char expected[num_bytes] = { 
-                (char)0xFF, (char)0xFE, (char)0xFD, (char)0xFC 
+            char expected[num_bytes] = {
+                (char)0xFF, (char)0xFE, (char)0xFD, (char)0xFC
             };
             char buffer[num_bytes];
             read_bytes(buffer, num_bytes);
@@ -127,7 +127,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 4;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xFE, (char)0xFF, (char)0xFC, (char)0xFD
             };
             char buffer[num_bytes];
@@ -143,8 +143,8 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 4;
-            char expected[num_bytes] = { 
-                (char)0xFF, (char)0xFE, (char)0xFD, (char)0xFC 
+            char expected[num_bytes] = {
+                (char)0xFF, (char)0xFE, (char)0xFD, (char)0xFC
             };
             char buffer[num_bytes];
             read_bytes(buffer, num_bytes);
@@ -159,7 +159,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 4;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xFE, (char)0xFF, (char)0xFC, (char)0xFD
             };
             char buffer[num_bytes];
@@ -175,7 +175,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 8;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xFF, (char)0xFE, (char)0xFD, (char)0xFC,
                 (char)0xFB, (char)0xFA, (char)0xF9, (char)0xF8
             };
@@ -192,7 +192,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 8;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xFC, (char)0xFD, (char)0xFE, (char)0xFF,
                 (char)0xF8, (char)0xF9, (char)0xFA, (char)0xFB
             };
@@ -209,7 +209,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 8;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xFF, (char)0xFE, (char)0xFD, (char)0xFC,
                 (char)0xFB, (char)0xFA, (char)0xF9, (char)0xF8
             };
@@ -226,7 +226,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 8;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xFC, (char)0xFD, (char)0xFE, (char)0xFF,
                 (char)0xF8, (char)0xF9, (char)0xFA, (char)0xFB
             };
@@ -243,7 +243,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 16;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xFF, (char)0xFE, (char)0xFD, (char)0xFC,
                 (char)0xFB, (char)0xFA, (char)0xF9, (char)0xF8,
                 (char)0xF7, (char)0xF6, (char)0xF5, (char)0xF4,
@@ -262,7 +262,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 16;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xF8, (char)0xF9, (char)0xFA, (char)0xFB,
                 (char)0xFC, (char)0xFD, (char)0xFE, (char)0xFF,
                 (char)0xF0, (char)0xF1, (char)0xF2, (char)0xF3,
@@ -281,7 +281,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 16;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xFF, (char)0xFE, (char)0xFD, (char)0xFC,
                 (char)0xFB, (char)0xFA, (char)0xF9, (char)0xF8,
                 (char)0xF7, (char)0xF6, (char)0xF5, (char)0xF4,
@@ -300,7 +300,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 16;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xF8, (char)0xF9, (char)0xFA, (char)0xFB,
                 (char)0xFC, (char)0xFD, (char)0xFE, (char)0xFF,
                 (char)0xF0, (char)0xF1, (char)0xF2, (char)0xF3,
@@ -321,7 +321,7 @@ namespace rayzz {
             fout.close();
 
             const size_t num_bytes = 16;
-            char expected[num_bytes] = { 
+            char expected[num_bytes] = {
                 (char)0xF8, (char)0xF9, (char)0xFA, (char)0xFB,
                 (char)0xFC, (char)0xFD, (char)0xFE, (char)0xFF,
                 (char)0xF7, (char)0xF6, (char)0xF5, (char)0xF4,
@@ -349,7 +349,7 @@ namespace rayzz {
             foutfirst.close();
             foutsecond.close();
 
-            char expected[2 * buffer_len] = { 
+            char expected[2 * buffer_len] = {
                 (char)0xFF, (char)0xFE, (char)0xFD,
                 (char)0xFC, (char)0xFB, (char)0xFA
             };

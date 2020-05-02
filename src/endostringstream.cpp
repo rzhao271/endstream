@@ -28,7 +28,7 @@ namespace rayzz {
         endostringstream::endostringstream() = default;
         endostringstream::~endostringstream() = default;
 
-        endostringstream::endostringstream(std::ostringstream&& os, endianness ness) : 
+        endostringstream::endostringstream(std::ostringstream&& os, endianness ness) :
             super(std::move(os)), pImpl(std::make_unique<impl>(ness)) {
         }
 
@@ -80,12 +80,12 @@ namespace rayzz {
 
         endostringstream& endostringstream::write(int32_t val) {
             pImpl->write_as_char_array<int32_t>(this, val);
-            return *this;    
+            return *this;
         }
 
         endostringstream& endostringstream::write(int64_t val) {
             pImpl->write_as_char_array<int64_t>(this, val);
-            return *this;    
+            return *this;
         }
 
         endostringstream& endostringstream::write(uint8_t val) {
@@ -96,7 +96,7 @@ namespace rayzz {
 
         endostringstream& endostringstream::write(uint16_t val) {
             pImpl->write_as_char_array<uint16_t>(this, val);
-            return *this;    
+            return *this;
         }
 
         endostringstream& endostringstream::write(uint32_t val) {

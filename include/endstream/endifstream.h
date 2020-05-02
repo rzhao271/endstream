@@ -16,7 +16,7 @@ namespace rayzz {
         public:
             using std::ifstream::read;
             using std::ifstream::operator>>;
-            
+
             endifstream();
             ~endifstream();
             endifstream(std::ifstream&& is, endianness ness);

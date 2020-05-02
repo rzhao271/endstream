@@ -106,7 +106,7 @@ namespace rayzz {
             pImpl->parse<uint32_t>(this, val);
             return *this;
         }
-        
+
         endistringstream& endistringstream::read(uint64_t& val) {
             pImpl->parse<uint64_t>(this, val);
             return *this;

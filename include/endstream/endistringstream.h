@@ -16,7 +16,7 @@ namespace rayzz {
         public:
             using std::istringstream::read;
             using std::istringstream::operator>>;
-            
+
             endistringstream();
             ~endistringstream();
             endistringstream(std::istringstream&& is, endianness ness);
