@@ -4,7 +4,7 @@ if (POLICY CMP0048)
 endif (POLICY CMP0048)
 
 set(this endstream_sample)
-project(${this} VERSION 0.1.0)
+project(${this} VERSION 0.1.1)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

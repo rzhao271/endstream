@@ -5,7 +5,7 @@ endif (POLICY CMP0048)
 
 set(this endstream)
 set(main_project_name ${this}) # for child files
-project(${this} VERSION 0.1.0 LANGUAGES CXX)
+project(${this} VERSION 0.1.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
